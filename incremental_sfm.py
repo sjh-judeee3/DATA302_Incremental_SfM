@@ -1,3 +1,8 @@
+"""
+Run command example:
+python incremental_sfm.py --video_path path_to_video.mp4 --frame_skip 75 --max_frames 30 --output_dir output_dir
+"""
+
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -23,7 +28,7 @@ class IncrementalSfM:
         self.features = []  # Store features for each image
         self.matches = {}  # Store matches between image pairs
         self.focal_length = focal_length
-        
+         
     def extract_frames(self, video_path, frame_skip=10, max_frames=50, output_dir='output/images'):
         """
         Extract frames from video and save them to dedicated output_dir
@@ -55,6 +60,7 @@ class IncrementalSfM:
             ret, frame = cap.read()
             if not ret:
                 break
+
                 
             if frame_idx % frame_skip == 0:
                 image_filename = f"frame_{extracted:04d}.jpg"
@@ -825,7 +831,7 @@ class IncrementalSfM:
         
         print(f"Saved results (cameras.txt, points.txt) to: {output_dir}/")
     
-    def run(self, video_path, frame_skip=10, max_frames=30, base_output_dir='output'):
+    def run(self, video_path, frame_skip=75, max_frames=30, base_output_dir='output'):
         """
         Run complete SfM pipeline
         
